@@ -14,4 +14,4 @@ class Prestamo(models.Model):
         verbose_name_plural = 'Prestamos'
 
     def __str__(self):
-        return self.loan_id
+        return self.loan_payment
