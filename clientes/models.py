@@ -14,3 +14,17 @@ class Cliente(models.Model):
 
     def __str__(self):
         return self.customer_name
+
+class Cuenta(models.Model):
+    account_id = models.IntegerField(primary_key=True)
+    customer_id = models.ForeignKey(Cliente, null=True, on_delete=models.CASCADE)
+    balance = models.IntegerField(null=True)
+    alias = models.CharField(max_length=50,null=True)
+    
+
+    class Meta:
+        verbose_name = 'Cuenta'
+        verbose_name_plural = 'Cuentas'
+
+    def __str__(self):
+        return self.alias   
