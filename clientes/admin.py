@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import Cliente, Cuenta
+from .models import Cliente, Cuenta, TipoCliente
 
-class ClienteAdmin(admin.ModelAdmin):
-    readonly_fields= ('nombre','apellido')
-
-admin.site.register(Cliente)
 admin.site.register(Cuenta)
+admin.site.register(Cliente)
+admin.site.register(TipoCliente)
