@@ -13,4 +13,4 @@ class Sucursal(models.Model):
         verbose_name_plural = "Sucursales"
         
     def __str__(self):
-        return self.branch_address_id
+        return self.branch_name

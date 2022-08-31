@@ -13,7 +13,7 @@ class PrestamoPost(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PrestamoDetails(APIView):
+class PrestamoDelete(APIView):
     def delete(self,request, pk):
         
         prestamo = Prestamo.objects.filter(pk=pk).first()
