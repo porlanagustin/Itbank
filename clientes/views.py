@@ -9,7 +9,7 @@ from rest_framework import status,generics,permissions
 from django.contrib.auth.models import User
 
 class ClienteDetails(APIView):
-        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+        permission_classes = [permissions.IsAuthenticated]
         def get(self, request, pk):
             cliente = Cliente.objects.filter(pk=pk).first()
 
@@ -25,17 +25,17 @@ class ClienteDetails(APIView):
             cliente = Cliente.objects.filter(pk=pk).first()
             serializer = ClienteSerializer(cliente, data=request.data)
             if serializer.is_valid():
-                serializer.save()
+                serializer.save(owner = request.user)
                 return Response(serializer.data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ClienteLists(APIView):
-        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+        permission_classes = [permissions.IsAuthenticated]
         def post(self, request, format=None):
             serializer = ClienteSerializer(data=request.data)
 
             if serializer.is_valid():
-                serializer.save()
+                serializer.save(owner = request.user)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
@@ -66,11 +66,11 @@ class CuentaLists(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 class UserDetail(generics.RetrieveAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer

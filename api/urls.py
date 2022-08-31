@@ -14,7 +14,7 @@ urlpatterns = [
     path('api/prestamodelete/<int:pk>',PrestamoDelete.as_view()),
     path('api/prestamo/', PrestamoPost.as_view()),
     path('api/cuentas/<int:pk>',CuentaDetails.as_view()),
-    path('api/cuentas/', CuentaLists.as_view()),
+    path('api/cuentaspost/', CuentaLists.as_view()),
     path('api/tarjetas/<int:customer_id>', TarjetasDetails.as_view()),
     path('api/users/', UserList.as_view()),
     path('api/users/<int:pk>/', UserDetail.as_view()),
